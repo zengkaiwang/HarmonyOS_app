@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "imageSrc": "app.media.enablement_pic1",
+    "title": "HarmonyOS第一课",
+    "brief": "基于真实的开发场景，提供向导式学习，多维度融合课程等内容，给开发者提供全新的学习体验。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/doc/harmonyos-video-courses/video-tutorials-0000001443535745"
+  },
+  {
+    "id": 2,
+    "imageSrc": "app.media.enablement_pic2",
+    "title": "开发指南",
+    "brief": "提供系统能力概述、快速入门，用于指导开发者进行场景化的开发。指南涉及到的知识点包括必要的背景知识、符合开发者实际开发场景的操作任务流（开发流程、开发步骤、调测验证）以及常见问题等。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/application-dev-guide-0000001630265101"
+  },
+  {
+    "id": 3,
+    "imageSrc": "app.media.enablement_pic3",
+    "title": "最佳实践",
+    "brief": "针对新发布特性及热点特性提供详细的技术解析和开发最佳实践。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/topic-architecture-0000001678045510"
+  },
+  {
+    "id": 4,
+    "imageSrc": "app.media.enablement_pic4",
+    "title": "Codelabs",
+    "brief": "以教学为目的的代码样例及详细的开发指导，帮助开发者一步步地完成指定场景的应用开发并掌握相关知识。Codelabs将最新的鸿蒙生态应用开发技术与典型场景结合，让开发者快速地掌握开发高质量应用的方法。同时支持互动式操作，通过文字、代码和效果联动为开发者带来更佳的学习体验。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/doc/harmonyos-codelabs/codelabs-0000001443855957"
+  },
+  {
+    "id": 5,
+    "imageSrc": "app.media.enablement_pic5",
+    "title": "Sample",
+    "brief": "面向不同类型的开发者提供的鸿蒙生态应用开发优秀实践，每个Sample Code都是一个可运行的工程，为开发者提供实例化的代码参考。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/doc/harmonyos-samples/samples-0000001162414961"
+  },
+  {
+    "id": 6,
+    "imageSrc": "app.media.enablement_pic6",
+    "title": "API参考",
+    "brief": "面向开发者提供鸿蒙系统开放接口的全集，供开发者了解具体接口使用方法。API参考详细地描述了每个接口的功能、使用限制、参数名、参数类型、参数含义、取值范围、权限、注意事项、错误码及返回值等。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/development-intro-0000001580026066"
+  },
+  {
+    "id": 7,
+    "imageSrc": "app.media.enablement_pic7",
+    "title": "FAQ",
+    "brief": "开发者常见问题的总结，开发者可以通过FAQ更高效地解决常见问题。FAQ会持续刷新，及时呈现最新的常见问题。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-development-0000001753952202"
+  },
+  {
+    "id": 8,
+    "imageSrc": "app.media.enablement_pic8",
+    "title": "开发者论坛",
+    "brief": "和其他应用开发者交流技术、共同进步。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/forum/home?all=1"
+  }
+]

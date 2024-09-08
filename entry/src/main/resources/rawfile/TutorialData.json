@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "imageSrc": "app.media.tutorial_pic1",
+    "title": "Step1 开发入门:Hello World",
+    "brief": "本篇教程实现了快速入门——一个用于了解和学习HarmonyOS的应用程序 。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-HelloWorld"
+  },
+  {
+    "id": 2,
+    "imageSrc": "app.media.tutorial_pic2",
+    "title": "Step2 使用Swiper构建运营位",
+    "brief": "Swiper组件提供滑动轮播显示的能力。Swiper本身是一个容器组件，当设置了多个子组件后，可以对这些子组件进行轮播显示。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-SwiperBanner"
+  },
+  {
+    "id": 3,
+    "imageSrc": "app.media.tutorial_pic3",
+    "title": "Step3 创建Item视图",
+    "brief": "Item定义子组件相关特征。相关组件支持使用条件渲染、循环渲染、懒加载等方式生成子组件。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-BuildItem"
+  },
+  {
+    "id": 4,
+    "imageSrc": "app.media.tutorial_pic4",
+    "title": "Step4 网格和列表组件的使用",
+    "brief": "网格和列表组件中，当Item达到一定数量，内容超过屏幕大小时，可以自动提供滚动功能，适合用于呈现同类数据类型或数据类型集",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-GridAndList"
+  },
+  {
+    "id": 5,
+    "imageSrc": "app.media.tutorial_pic5",
+    "title": "Step5 应用架构设计基础——MVVM框架",
+    "brief": "ArkUI采取MVVM = Model + View + ViewModel模式，将数据与视图绑定在一起，数据更新时候会直接更新视图。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-BasicArchitectureDesignPart1"
+  },
+  {
+    "id": 6,
+    "imageSrc": "app.media.tutorial_pic6",
+    "title": "Step6 应用架构设计基础——三层架构",
+    "brief": "ArkWeb（方舟Web）提供了Web组件，用于在应用程序中显示Web页面内容，为开发者提供页面加载、页面交互、页面调试等能力。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-BasicArchitectureDesignPart2"
+  },
+  {
+    "id": 7,
+    "imageSrc": "app.media.tutorial_pic7",
+    "title": "Step7 ArkWeb页面适配",
+    "brief": "基于Web组件实现了快速入门案例中的课程学习界面，帮助开发者了解如何加载网络界面、本地界面以及如何进行网络权限的配置。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-ArkwebPageAdaptation"
+  },
+  {
+    "id": 8,
+    "imageSrc": "app.media.tutorial_pic8",
+    "title": "Step8 通过结构数据构建页面",
+    "brief": "在该教程中会根据对知识地图界面进行界面实现的分析以及相应的数据结构的设计，然后逐步实现知识地图中的两个界面。通过该章节，开发者可以了解到数据如何驱动UI更新。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-DataDrivenUIUpdates"
+  },
+  {
+    "id": 9,
+    "imageSrc": "app.media.tutorial_pic9",
+    "title": "Step9 设置组件导航",
+    "brief": "该教程会在“数据驱动UI更新”教程完成了知识地图相关界面开发的基础上，对代码进行修改，实现从知识地图页到知识地图详情页的组件路由导航，同时该教程中会讲解到Tabs的开发。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-SettingUpComponentNavigation"
+  },
+  {
+    "id": 10,
+    "imageSrc": "app.media.tutorial_pic10",
+    "title": "Step10 原生智能：AI语音朗读",
+    "brief": "为您的文章详情页添加文本转语音服务，朗读文章简介，手机在无网状态下系统应用无障碍（屏幕朗读）接入文本转语音能力，提供语音播报。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-TTS"
+  },
+  {
+    "id": 11,
+    "imageSrc": "app.media.tutorial_pic11",
+    "title": "Step11 一次开发，多端部署",
+    "brief": "通过对快速入门整体页面的分析，得出关键的界面适配点以及需要适配的关键组件，然后通过对关键适配点的逐步适配，完成整个应用的一多开发。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-DevelopOnceDeployAnywhere"
+  },
+  {
+    "id": 12,
+    "imageSrc": "app.media.tutorial_pic12",
+    "title": "Step12 原生互联：分布式流转",
+    "brief": "基于分布式流转相关能力，使得整个应用可以在不同设备间进行无缝的流转。该章节内容会涉及到流转的相关前提，如何进行流转的权限配置以及实现应用可流转。",
+    "webUrl": "https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_Next-DistributedFlow"
+  }
+]

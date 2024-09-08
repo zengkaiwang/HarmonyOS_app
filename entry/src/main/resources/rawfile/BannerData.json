@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "imageSrc": "app.media.banner_pic0",
+    "url": "https://developer.huawei.com/consumer/cn/training/course/video/C101718352529709527"
+  },
+  {
+    "id": 1,
+    "imageSrc": "app.media.banner_pic1",
+    "url": "https://developer.huawei.com/consumer/cn/"
+  },
+  {
+    "id": 2,
+    "imageSrc": "app.media.banner_pic2",
+    "url": "https://developer.huawei.com/consumer/cn/deveco-studio/"
+  },
+  {
+    "id": 3,
+    "imageSrc": "app.media.banner_pic3",
+    "url": "https://developer.huawei.com/consumer/cn/arkts/"
+  },
+  {
+    "id": 4,
+    "imageSrc": "app.media.banner_pic4",
+    "url": "https://developer.huawei.com/consumer/cn/arkui/"
+  },
+  {
+    "id": 5,
+    "imageSrc": "app.media.banner_pic5",
+    "url": "https://developer.huawei.com/consumer/cn/sdk"
+  }
+]
