@@ -30,7 +30,7 @@ class ArticleClass {
 @Entry
 @Component
 struct Index {
-  @State message: string = '快速哈哈';
+  @State message: string = '快速入门';
 
   build() {
     Column() {
@@ -43,7 +43,16 @@ struct Index {
         .padding({left: 16})
         .fontFamily('HarmonyHeiTi-Bold')
         .lineHeight(33)
-      Banner()
+      Scroll() {
+        Column() {
+          Banner()
+          EnablementView()
+          TutorialView()
+        }
+      }
+      .layoutWeight(1)
+      .scrollBar(BarState.Off)
+      .align(Alignment.TopStart)
     }
     .height('100%')
     .width('100%')
@@ -90,13 +99,16 @@ struct Banner {
 
 // @Preview
 @Component
-struct EnablementItem {
-  private title: string = 'HarmonyOS第一课'
-  private brief: string = '基于真实的开发场景，提供向导式学习，多维度融合课程等内容，给开发者提供全新的学习体验'
+export struct EnablementItem {
+  // private title: string = 'HarmonyOS第一课'
+  // private brief: string = '基于真实的开发场景，提供向导式学习，多维度融合课程等内容，给开发者提供全新的学习体验'
+
+  @Prop enablementItem: ArticleClass
 
   build() {
     Column() {
-      Image($r('app.media.enablement_pic1'))
+      // Image($r('app.media.enablement_pic1'))
+      Image(this.enablementItem.imageSrc)
         .width('100%')
         .objectFit(ImageFit.Cover)
         .height(96)
@@ -104,7 +116,7 @@ struct EnablementItem {
           topLeft: 16,
           topRight: 16
         })
-      Text(this.title)
+      Text(this.enablementItem.title)
         .height(19)
         .width('100%')
         .fontSize(14)
@@ -114,7 +126,7 @@ struct EnablementItem {
         .fontWeight(400)
         .padding({ left: 12, right: 12 })
         .margin({ top: 8 })
-      Text(this.brief)
+      Text(this.enablementItem.brief)
         .height(32)
         .width('100%')
         .fontSize(12)
@@ -135,14 +147,16 @@ struct EnablementItem {
 
 @Preview
 @Component
-struct TutorialItem {
-  private title: string = 'Step1 快速入门介绍';
-  private brief: string = '本篇教程实现了快速入门——一个用于了解和学习HarmonyOS的应用程序 。';
+export struct TutorialItem {
+  // private title: string = 'Step1 快速入门介绍';
+  // private brief: string = '本篇教程实现了快速入门——一个用于了解和学习HarmonyOS的应用程序 。';
+
+  @Prop tutorialItem: ArticleClass
 
   build() {
     Row() {
       Column() {
-        Text(this.title)
+        Text(this.tutorialItem.title)
           .height(19)
           .width('100%')
           .fontSize(14)
@@ -151,7 +165,7 @@ struct TutorialItem {
           .maxLines(1)
           .fontWeight(400)
           .margin({ top: 4 })
-        Text(this.brief)
+        Text(this.tutorialItem.brief)
           .height(32)
           .width('100%')
           .fontSize(12)
@@ -164,7 +178,7 @@ struct TutorialItem {
       }
       .height('100%')
       .layoutWeight(1)
-      Image($r('app.media.enablement_pic1'))
+      Image(this.tutorialItem.imageSrc)
         .height(64)
         .width(108)
         .objectFit(ImageFit.Cover)
@@ -207,7 +221,31 @@ struct EnablementView{
       'https://developer.huawei.com/consumer/cn/forum/home?all=1'),
   ];
   build() {
-
+    Column() {
+      Text('赋能套件')
+        .fontColor('#182431')
+        .fontSize(16)
+        .fontWeight(500)
+        .fontFamily('HarmonyHeiTi-medium')
+        .textAlign(TextAlign.Start)
+        .padding({ left: 16 })
+        .margin({ bottom: 8.5 })
+        .width('100%')
+      Grid() {
+        ForEach(this.enablementList, (item: ArticleClass) => {
+          GridItem() {
+            EnablementItem({ enablementItem: item})
+          }
+        }, (item:ArticleClass) => item.id)
+      }
+      .rowsTemplate('1fr')
+      .columnsGap(8)
+      .scrollBar(BarState.Off)
+      .height(169)
+      .padding({top:2,left:16,right:16})
+    }
+    .margin({top: 8})
+    .alignItems(HorizontalAlign.Start)
   }
 }
 
@@ -250,6 +288,27 @@ struct TutorialView{
   ];
   
   build() {
-
+    Column() {
+      Text('入门教程')
+        .fontColor('#182431')
+        .fontSize(16)
+        .fontWeight(500)
+        .fontFamily('HarmonyHeiTi-medium')
+        .textAlign(TextAlign.Start)
+        .padding({ left: 16 })
+        .margin({ bottom: 8.5 })
+        .width('100%')
+      List({space: 12}) {
+        ForEach(this.tutorialList, (item: ArticleClass) => {
+          ListItem() {
+            TutorialItem({tutorialItem: item})
+          }
+        }, (item: ArticleClass) => item.id)
+      }
+      .scrollBar(BarState.Off)
+      .padding({left: 16, right: 16})
+    }
+    .margin({ top: 18})
+    .alignItems(HorizontalAlign.Start)
   }
 }
