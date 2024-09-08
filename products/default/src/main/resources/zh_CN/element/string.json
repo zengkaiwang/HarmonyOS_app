@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "HMOS世界入门版"
+    },
+    {
+      "name": "apply_for_network",
+      "value": "允许应用使用网络"
     }
   ]
 }
