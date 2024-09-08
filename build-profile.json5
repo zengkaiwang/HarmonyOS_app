@@ -25,8 +25,8 @@
   },
   "modules": [
     {
-      "name": "entry",
-      "srcPath": "./entry",
+      "name": "default",
+      "srcPath": "./products/default",
       "targets": [
         {
           "name": "default",
@@ -47,6 +47,14 @@
     {
       "name": "learning",
       "srcPath": "./features/learning",
+    },
+    {
+      "name": "utils",
+      "srcPath": "./commons/utils",
+    },
+    {
+      "name": "uicomponents",
+      "srcPath": "./commons/uicomponents",
     }
   ]
 }
