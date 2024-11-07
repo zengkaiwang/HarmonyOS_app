@@ -1,4 +1,4 @@
-import { QuickStartPage } from '@ohos/quickstart'
+import { QuickStartPage, ThreeVSThreeChatView } from '@ohos/quickstart'
 import { CourseLearning } from '@ohos/learning'
 import { KnowledgeMap } from '@ohos/map';
 import { KnowledgeMapContent } from '@ohos/map';
@@ -49,6 +49,12 @@ struct Index {
         KnowledgeMap()
       }
       .tabBar(this.tabBarBuilder('知识地图', 2, $r('app.media.ic_01_on'), $r('app.media.ic_01_off')))
+
+      TabContent() {
+        ThreeVSThreeChatView()
+      }
+      .tabBar(this.tabBarBuilder('测试', 3, $r('app.media.ic_01_on'), $r('app.media.ic_01_off')))
+
     }
     .scrollable(false)
     .vertical(false)
