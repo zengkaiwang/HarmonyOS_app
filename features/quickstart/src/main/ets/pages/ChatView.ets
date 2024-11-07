@@ -14,6 +14,10 @@ export struct ThreeVSThreeChatView {
 
   aboutToAppear(): void {
     this.getMessageList()
+
+    getContext(this).eventHub.on("clickBack", (value: string) => {
+      console.log('我是通过eventHub传过来的值', value)
+    })
   }
 
   getMessageList() {
@@ -59,14 +63,26 @@ export struct ThreeVSThreeChatView {
         this.messageList = [...this.messageList, this.messageList[2]]
       }
       this.scroller.scrollEdge(Edge.Bottom, {velocity: 0})
-    }, 2000)
+    }, 3000)
+  }
+
+  onSendMsg (value: string) {
+    console.log('onSendMsg:', value)
+    this.messageList = [...this.messageList, {
+      name: '我',
+      msg: value,
+      type: 'myself',
+      id: Math.random().toString(36).substr(2)
+    }]
+    setTimeout(() => {
+      this.scroller.scrollEdge(Edge.Bottom, {velocity: 0})
+    }, 200)
   }
 
 
   build() {
     Column() {
       Text(this.message)
-        .id('HelloWorld')
         .fontSize(20)
         .fontWeight('700')
         .width('100%')
@@ -89,6 +105,12 @@ export struct ThreeVSThreeChatView {
       .height(160)
       .scrollBar(BarState.Auto)
       .align(Alignment.TopStart)
+
+      // 发送消息组件
+      // TextAreaExample()
+      TextAreaExample({ clickBack: (value) => {
+        this.onSendMsg(value)
+      } })
     }
     .height('100%')
     .width('100%')
@@ -133,5 +155,60 @@ export struct MessageItem {
     .margin({top: 6})
     .width('auto')
     .constraintSize({ maxWidth: 280})
+  }
+}
+
+
+// input输入框的使用示例：
+// @Preview
+@Component
+struct TextAreaExample {
+
+  @State text: string = ''
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
+  controller: TextAreaController = new TextAreaController()
+
+  clickBack:(value: string)=>void = (value)=>{}
+
+  build() {
+    Column() {
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        TextArea({
+          text: this.text,
+          placeholder: '请输入消息',
+          controller: this.controller
+        })
+          .placeholderFont({ size: 16, weight: 400 })
+          .width(336)
+            // .height(56)
+          // .margin(20)
+          .fontSize(16)
+          .fontColor('#182431')
+          .backgroundColor('#FFFFFF')
+          .onChange((value: string) => {
+            this.text = value
+          })
+        Button('发送', { buttonStyle: ButtonStyleMode.NORMAL })
+          .width(80)
+          .height(36)
+          .fontColor('#7D7D7D')
+          .backgroundColor('#fff')
+          .margin({left: -80})
+          .border({ width: 1, color: 'rgba(0,0,0,0.1)', radius: 4})
+          .onClick(() => {
+            console.log(this.text)
+            this.clickBack(this.text)
+            getContext(this).eventHub.emit("clickBack",this.text)
+          })
+      }
+      // Text(this.text)
+      // Button('Set caretPosition 1')
+      //   .backgroundColor('#007DFF')
+      //   .margin(15)
+      //   .onClick(() => {
+      //     // 设置光标位置到第一个字符后
+      //     this.controller.caretPosition(1)
+      //   })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5').margin({top: 50})
   }
 }
