@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/scaler/.ohos/config/default_HarmonyOS_app_-RXWXPHMT1hKeyoVfYxM80O6ZjAMmT_oA44mGoq3WZY=.cer",
+          "storePassword": "0000001BDE2B058497E00B93C59A522FAEC016C0AF32775EA360B68EE3B4CBBD7EDB0F56AD3EE7B76F156A",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BDAB0D1745A0F404EABA5FA80D54F8842BB9E9E2EE892BE13CBFD14B20B14567E2453798873BBDD",
+          "profile": "/Users/scaler/.ohos/config/default_HarmonyOS_app_-RXWXPHMT1hKeyoVfYxM80O6ZjAMmT_oA44mGoq3WZY=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/scaler/.ohos/config/default_HarmonyOS_app_-RXWXPHMT1hKeyoVfYxM80O6ZjAMmT_oA44mGoq3WZY=.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
