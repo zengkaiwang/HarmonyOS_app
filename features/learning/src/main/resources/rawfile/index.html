@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HarmonyOS WebView示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0A59F7;
+            text-align: center;
+        }
+        button {
+            background-color: #0A59F7;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HarmonyOS WebView与原生交互示例</h1>
+        
+        <button onclick="getDeviceInfo()">获取设备信息</button>
+        <button onclick="getNetworkStatus()">获取网络状态</button>
+        
+        <div id="result">
+            <p>点击上方按钮调用原生方法...</p>
+        </div>
+    </div>
+
+    <script>
+        // 回调函数映射
+        const callbacks = {};
+        
+        // 生成唯一ID
+        function generateId() {
+            return 'callback_' + Math.floor(Math.random() * 10000000);
+        }
+        
+        // 获取设备信息
+        function getDeviceInfo() {
+            const callbackId = generateId();
+            
+            // 保存回调函数
+            callbacks[callbackId] = function(data) {
+                document.getElementById('result').innerHTML = 
+                    `<p>设备信息：</p>
+                     <p>平台: ${data.platform}</p>
+                     <p>版本: ${data.version}</p>`;
+            };
+            
+            // 调用原生方法
+            const data = {
+                taljsfname: 'deviceInformation',
+                params: {},
+                callbackid: callbackId
+            };
+            
+            // 检查桥接对象是否存在
+            if (window.talAndroidJsBridge) {
+                window.talAndroidJsBridge.postMethod(JSON.stringify(data), 'device');
+            } else {
+                document.getElementById('result').innerHTML = 
+                    '<p style="color:red">错误: JavaScript桥接未初始化</p>';
+            }
+        }
+        
+        // 获取网络状态
+        function getNetworkStatus() {
+            const callbackId = generateId();
+            
+            // 保存回调函数
+            callbacks[callbackId] = function(data) {
+                document.getElementById('result').innerHTML = 
+                    `<p>网络状态：</p>
+                     <p>连接状态: ${data.connected ? '已连接' : '未连接'}</p>
+                     <p>网络类型: ${data.type}</p>`;
+            };
+            
+            // 调用原生方法
+            const data = {
+                taljsfname: 'netWorkStatus',
+                params: {},
+                callbackid: callbackId
+            };
+            
+            // 检查桥接对象是否存在
+            if (window.talAndroidJsBridge) {
+                window.talAndroidJsBridge.postMethod(JSON.stringify(data), 'network');
+            } else {
+                document.getElementById('result').innerHTML = 
+                    '<p style="color:red">错误: JavaScript桥接未初始化</p>';
+            }
+        }
+        
+        // 原生代码回调处理函数
+        window.app_executeCallBack = function(callbackData) {
+            const callbackId = callbackData.callbackid;
+            const result = callbackData.result;
+            
+            // 执行对应的回调函数
+            if (callbacks[callbackId]) {
+                callbacks[callbackId](result);
+                // 执行后删除回调函数
+                delete callbacks[callbackId];
+            }
+        };
+    </script>
+</body>
+</html> 

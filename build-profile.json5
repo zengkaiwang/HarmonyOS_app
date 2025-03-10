@@ -6,9 +6,9 @@
         "type": "HarmonyOS",
         "material": {
           "certpath": "/Users/scaler/.ohos/config/default_HarmonyOS_app_-RXWXPHMT1hKeyoVfYxM80O6ZjAMmT_oA44mGoq3WZY=.cer",
-          "storePassword": "0000001BDE2B058497E00B93C59A522FAEC016C0AF32775EA360B68EE3B4CBBD7EDB0F56AD3EE7B76F156A",
+          "storePassword": "0000001BAB969AFA2959B736280B114D5166E3A24A671433FE9C7FB0E4722942E00267BAA4FC944174D791",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001BDAB0D1745A0F404EABA5FA80D54F8842BB9E9E2EE892BE13CBFD14B20B14567E2453798873BBDD",
+          "keyPassword": "0000001B243D43872B6D8C550AD0B2447CF8A6386FBCCD25464F6603972B89D09A233C8008145F3EE5077B",
           "profile": "/Users/scaler/.ohos/config/default_HarmonyOS_app_-RXWXPHMT1hKeyoVfYxM80O6ZjAMmT_oA44mGoq3WZY=.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "/Users/scaler/.ohos/config/default_HarmonyOS_app_-RXWXPHMT1hKeyoVfYxM80O6ZjAMmT_oA44mGoq3WZY=.p12"

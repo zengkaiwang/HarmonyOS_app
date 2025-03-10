@@ -13,7 +13,11 @@ export struct CourseLearning {
 
   build() {
     Column() {
-      Web({src: 'http://www.huawei.com', controller: this.webviewController})
+      Web({
+        // 从资源目录加载HTML文件
+        src: 'resource://rawfile/index.html',
+        controller: this.webviewController
+      })
         .domStorageAccess(true)
         .javaScriptAccess(true)
         .onPageBegin((data) => {
