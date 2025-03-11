@@ -42,6 +42,15 @@
             background-color: #f9f9f9;
             min-height: 100px;
         }
+        .debug {
+            color: blue;
+            font-size: 12px;
+            margin: 2px 0;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -57,80 +66,168 @@
     </div>
 
     <script>
+        // 简单的日志函数
+        function log(message, isError) {
+            console.log(message);
+            var div = document.createElement('div');
+            div.className = isError ? 'debug error' : 'debug';
+            div.textContent = message;
+            document.getElementById('result').appendChild(div);
+        }
+        
         // 回调函数映射
-        const callbacks = {};
+        var callbacks = {};
         
         // 生成唯一ID
         function generateId() {
             return 'callback_' + Math.floor(Math.random() * 10000000);
         }
         
+        // 确保桥接对象存在
+        function ensureBridge() {
+            if (!window.talAndroidJsBridge) {
+                // 创建一个桥接对象
+                window.talAndroidJsBridge = {
+                    postMethod: function(data, domain) {
+                        log('使用 prompt 协议调用原生方法');
+                        return prompt('talAndroidJsBridge:' + domain, data);
+                    }
+                };
+                log('已创建桥接对象');
+            }
+            return window.talAndroidJsBridge;
+        }
+        
         // 获取设备信息
         function getDeviceInfo() {
-            const callbackId = generateId();
+            document.getElementById('result').innerHTML = '<p>正在获取设备信息...</p>';
             
-            // 保存回调函数
-            callbacks[callbackId] = function(data) {
-                document.getElementById('result').innerHTML = 
-                    `<p>设备信息：</p>
-                     <p>平台: ${data.platform}</p>
-                     <p>版本: ${data.version}</p>`;
-            };
-            
-            // 调用原生方法
-            const data = {
-                taljsfname: 'deviceInformation',
-                params: {},
-                callbackid: callbackId
-            };
-            
-            // 检查桥接对象是否存在
-            if (window.talAndroidJsBridge) {
-                window.talAndroidJsBridge.postMethod(JSON.stringify(data), 'device');
-            } else {
-                document.getElementById('result').innerHTML = 
-                    '<p style="color:red">错误: JavaScript桥接未初始化</p>';
+            try {
+                // 确保桥接对象存在
+                var bridge = ensureBridge();
+                
+                var callbackId = generateId();
+                log('生成回调ID: ' + callbackId);
+                
+                // 保存回调函数
+                callbacks[callbackId] = function(data) {
+                    document.getElementById('result').innerHTML = 
+                        '<p>设备信息：</p>' +
+                        '<p>平台: ' + data.platform + '</p>' +
+                        '<p>版本: ' + data.version + '</p>';
+                };
+                
+                // 调用原生方法
+                var data = {
+                    taljsfname: 'deviceInformation',
+                    params: {},
+                    callbackid: callbackId
+                };
+                
+                log('调用原生方法: ' + JSON.stringify(data));
+                var result = bridge.postMethod(JSON.stringify(data), 'device', (res) => {
+                  log('执行回调: ' + res);
+                });
+                log('调用结果: ' + result);
+                
+                // 解析结果
+                try {
+                    var jsonResult = JSON.parse(result);
+                    if (jsonResult.error) {
+                        log('错误: ' + jsonResult.error, true);
+                    }
+                } catch (e) {
+                    // 忽略解析错误
+                }
+            } catch (error) {
+                log('错误: ' + error.message, true);
             }
         }
         
         // 获取网络状态
         function getNetworkStatus() {
-            const callbackId = generateId();
+            document.getElementById('result').innerHTML = '<p>正在获取网络状态...</p>';
             
-            // 保存回调函数
-            callbacks[callbackId] = function(data) {
-                document.getElementById('result').innerHTML = 
-                    `<p>网络状态：</p>
-                     <p>连接状态: ${data.connected ? '已连接' : '未连接'}</p>
-                     <p>网络类型: ${data.type}</p>`;
-            };
-            
-            // 调用原生方法
-            const data = {
-                taljsfname: 'netWorkStatus',
-                params: {},
-                callbackid: callbackId
-            };
-            
-            // 检查桥接对象是否存在
-            if (window.talAndroidJsBridge) {
-                window.talAndroidJsBridge.postMethod(JSON.stringify(data), 'network');
-            } else {
-                document.getElementById('result').innerHTML = 
-                    '<p style="color:red">错误: JavaScript桥接未初始化</p>';
+            try {
+                // 确保桥接对象存在
+                var bridge = ensureBridge();
+                
+                var callbackId = generateId();
+                log('生成回调ID: ' + callbackId);
+                
+                // 保存回调函数
+                callbacks[callbackId] = function(data) {
+                    document.getElementById('result').innerHTML = 
+                        '<p>网络状态：</p>' +
+                        '<p>连接状态: ' + (data.connected ? '已连接' : '未连接') + '</p>' +
+                        '<p>网络类型: ' + data.type + '</p>';
+                };
+                
+                // 调用原生方法
+                var data = {
+                    taljsfname: 'netWorkStatus',
+                    params: {},
+                    callbackid: callbackId
+                };
+                
+                log('调用原生方法: ' + JSON.stringify(data));
+                var result = bridge.postMethod(JSON.stringify(data), 'network');
+                log('调用结果: ' + result);
+                
+                // 解析结果
+                try {
+                    var jsonResult = JSON.parse(result);
+                    if (jsonResult.error) {
+                        log('错误: ' + jsonResult.error, true);
+                    }
+                } catch (e) {
+                    // 忽略解析错误
+                }
+            } catch (error) {
+                log('错误: ' + error.message, true);
             }
         }
         
         // 原生代码回调处理函数
         window.app_executeCallBack = function(callbackData) {
-            const callbackId = callbackData.callbackid;
-            const result = callbackData.result;
+            log('收到回调数据: ' + JSON.stringify(callbackData));
             
-            // 执行对应的回调函数
-            if (callbacks[callbackId]) {
-                callbacks[callbackId](result);
-                // 执行后删除回调函数
-                delete callbacks[callbackId];
+            try {
+                var callbackId = callbackData.callbackid;
+                var result = callbackData.result;
+                var error = callbackData.error;
+                
+                if (error) {
+                    log('回调错误: ' + error, true);
+                    return;
+                }
+                
+                // 执行对应的回调函数
+                if (callbacks[callbackId]) {
+                    log('执行回调函数: ' + callbackId);
+                    callbacks[callbackId](result);
+                    // 执行后删除回调函数
+                    delete callbacks[callbackId];
+                } else {
+                    log('未找到回调函数: ' + callbackId);
+                }
+            } catch (error) {
+                log('处理回调出错: ' + error.message, true);
+            }
+        };
+        
+        // 页面加载完成后检查桥接
+        window.onload = function() {
+            log('页面加载完成');
+            
+            // 确保桥接对象存在
+            ensureBridge();
+            
+            // 检查桥接是否可用
+            if (window.talAndroidJsBridge) {
+                log('JavaScript桥接已初始化');
+            } else {
+                log('JavaScript桥接未初始化', true);
             }
         };
     </script>
