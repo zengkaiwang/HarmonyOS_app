@@ -171,7 +171,9 @@
                 };
                 
                 log('调用原生方法: ' + JSON.stringify(data));
-                var result = bridge.postMethod(JSON.stringify(data), 'network');
+                var result = bridge.postMethod(JSON.stringify(data), 'network', (res) => {
+                    log('执行回调: ' + res);
+                });
                 log('调用结果: ' + result);
                 
                 // 解析结果
